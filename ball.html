@@ -27,17 +27,18 @@
     <script type="text/javascript">
       var canvas = document.getElementById("canvas-for-ball");
       var ctx = canvas.getContext("2d");
-      var y = 10;
+  var y = 10;
+  var dy = 1;
       function repeatme() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.beginPath();
         ctx.arc(50, y, 3, 0, 2 * Math.PI);
         ctx.stroke();
-        y += 1;
-        window.requestAnimationFrame(repeatme);
-        if (y >= canvas.height) {
-          y = canvas.height - 5; 
+        y += dy;
+        if (y > canvas.height || y < 0) {
+          dy = -dy;
         }
+        window.requestAnimationFrame(repeatme);
       }
       repeatme();
     </script>
