@@ -27,24 +27,28 @@
     <script type="text/javascript">
       var canvas = document.getElementById("canvas-for-ball");
       var ctx = canvas.getContext("2d");
-  var x = 50;
-  var y = 10;
-  var dx = 1;
-  var dy = 1;
+  var Ball = {
+    x: 50,
+    y: 10,
+    dx: 1,
+    dy: 1,
+    r: 3,
+    move: function() {
+      this.x += this.dx;
+      this.y += this.dy;
+      if (this.y > canvas.height - this.r || this.y < this.r) this.dy = -this.dy;
+      if (this.x > canvas.width - this.r || this.x < this.r) this.dx = -this.dx;
+    },
+    draw: function() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+      ctx.stroke();
+    }
+  };
   function repeatme() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.beginPath();
-    ctx.arc(x, y, 3, 0, 2 * Math.PI);
-    ctx.stroke();
-    x += dx;
-    y += dy;
-    if (y > canvas.height - 3 || y < 3)
-    {
-      dy = -dy;
-    }
-    if (x > canvas.width - 3 || x < 3) {
-      dx = -dx;
-    }
+    Ball.move();
+    Ball.draw();
     window.requestAnimationFrame(repeatme);
   }
   repeatme();
