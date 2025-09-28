@@ -11,36 +11,30 @@
       body {
           background-color: white;
       }
+        /* Add a simple border to the canvas */
+        #canvas-for-ball {
+          border: 2px solid black;
+        }
     </style>
 
   </head>
 
   <body>
 
-    <canvas id="canvas-for-ball"></canvas>
+  <!-- Set the canvas size directly in HTML -->
+  <canvas id="canvas-for-ball" width="400" height="300"></canvas>
 
     <script type="text/javascript">
-      // Gets a handle to the element with id canvasOne.
       var canvas = document.getElementById("canvas-for-ball");
-      // Get a 2D context for the canvas.
       var ctx = canvas.getContext("2d");
-      
-      // The vertical location of the ball.
       var y = 10;
-      // A function to repeat every time the animation loops.
       function repeatme() {
-        // Draw the ball (stroked, not filled).
         ctx.beginPath();
         ctx.arc(50, y, 3, 0, 2 * Math.PI);
         ctx.stroke();
-        
-        // Update the y location.
         y += 1;
-        
         window.requestAnimationFrame(repeatme);
       }
-      
-      // Get the animation going.
       repeatme();
     </script>
 
