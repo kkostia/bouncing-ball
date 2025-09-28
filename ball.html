@@ -1,8 +1,6 @@
 
 <!DOCTYPE html>
-
 <html>
-
   <head>
     <meta charset="UTF-8">
     <title>Canvas</title>
@@ -11,23 +9,20 @@
       body {
           background-color: white;
       }
-        /* Add a simple border to the canvas */
         #canvas-for-ball {
           border: 2px solid black;
         }
     </style>
-
   </head>
-
   <body>
 
-  <!-- Set the canvas size directly in HTML -->
+    
   <canvas id="canvas-for-ball" width="400" height="300"></canvas>
 
     <script type="text/javascript">
       var canvas = document.getElementById("canvas-for-ball");
       var ctx = canvas.getContext("2d");
-  var Ball = {
+  var ball = {
     x: 50,
     y: 10,
     dx: 1,
@@ -36,8 +31,14 @@
     move: function() {
       this.x += this.dx;
       this.y += this.dy;
-      if (this.y > canvas.height - this.r || this.y < this.r) this.dy = -this.dy;
-      if (this.x > canvas.width - this.r || this.x < this.r) this.dx = -this.dx;
+      if (this.y > canvas.height - this.r || this.y < this.r)
+      {
+        this.dy = -this.dy;
+      }
+      if (this.x > canvas.width - this.r || this.x < this.r)
+      {
+        this.dx = -this.dx;
+      }
     },
     draw: function() {
       ctx.beginPath();
@@ -47,8 +48,8 @@
   };
   function repeatme() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    Ball.move();
-    Ball.draw();
+    ball.move();
+    ball.draw();
     window.requestAnimationFrame(repeatme);
   }
   repeatme();
